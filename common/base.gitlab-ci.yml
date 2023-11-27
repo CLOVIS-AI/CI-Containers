@@ -1,0 +1,43 @@
+stages:
+  - build   # create the container
+  - test    # check its contents
+  - deploy  # publish it
+
+include:
+  - remote: https://gitlab.com/opensavvy/ci-templates/-/raw/main/version.gitlab-ci.yml
+  - remote: https://gitlab.com/opensavvy/ci-templates/-/raw/main/docker.gitlab-ci.yml
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'parent_pipeline'
+
+variables:
+  name: UNNAMED
+  path: containers/$name
+
+build:
+  extends: [ .os.docker.build ]
+  needs: [ ]
+  stage: build
+
+  variables:
+    dockerfile: $path/Dockerfile
+    context: $path
+    image: $name
+
+  interruptible: true
+
+publish:
+  extends: [ .os.docker.rename ]
+  # don't use needs because we want to wait for all jobs in the test phase
+  stage: deploy
+
+  variables:
+    image: $name
+
+  rules:
+    - if: $CI_MERGE_REQUEST_ID == null
+      variables:
+        new_version: latest
+
+  interruptible: false
