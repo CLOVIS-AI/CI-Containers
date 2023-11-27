@@ -1,0 +1,5 @@
+include:
+  - local: common/base.gitlab-ci.yml
+
+variables:
+  name: chromium
