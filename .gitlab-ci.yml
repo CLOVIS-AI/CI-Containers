@@ -15,12 +15,6 @@ workflow:
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
     - if: $CI_COMMIT_TAG
 
-hello-world:
-  image: alpine:latest
-  script:
-    - echo 'Hello world'
-  interruptible: true
-
 mirror-playground:
   stage: deploy
   extends: [ .os.mirror ]
