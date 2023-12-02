@@ -40,6 +40,11 @@ firefox:
   variables:
     name: firefox
 
+java:
+  extends: [ .container ]
+  variables:
+    name: java
+
 # endregion
 
 mirror-playground:
