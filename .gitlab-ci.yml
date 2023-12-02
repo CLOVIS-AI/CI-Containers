@@ -35,6 +35,11 @@ chromium:
   variables:
     name: chromium
 
+firefox:
+  extends: [ .container ]
+  variables:
+    name: firefox
+
 # endregion
 
 mirror-playground:
