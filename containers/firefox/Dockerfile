@@ -1,4 +1,3 @@
-FROM node:lts
+FROM archlinux:base
 
-RUN apt-get update && \
-	apt-get install -y --no-install-recommends default-jdk firefox-esr
+RUN pacman -Syuu --noconfirm jre17-openjdk-headless firefox
