@@ -1,3 +1,3 @@
 FROM archlinux:base
 
-RUN pacman -Syuu --noconfirm jre17-openjdk-headless
+RUN pacman -Syuu --noconfirm jre17-openjdk-headless libxcrypt-compat
