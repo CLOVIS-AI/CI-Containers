@@ -4,7 +4,6 @@ stages:
   - deploy  # publish it
 
 include:
-  - remote: https://gitlab.com/opensavvy/ci-templates/-/raw/main/version.gitlab-ci.yml
   - remote: https://gitlab.com/opensavvy/ci-templates/-/raw/main/docker.gitlab-ci.yml
 
 workflow:
@@ -35,10 +34,6 @@ publish:
 
   variables:
     image: $name
-
-  rules:
-    - if: $CI_MERGE_REQUEST_ID == null
-      variables:
-        new_version: latest
+    new_version: $version  # defined in the parent pipeline
 
   interruptible: false
