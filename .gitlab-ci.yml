@@ -55,6 +55,11 @@ java:
   variables:
     name: java
 
+android:
+  extends: [ .container ]
+  variables:
+    name: android
+
 # endregion
 
 mirror-playground:
