@@ -1,7 +1,8 @@
 FROM archlinux:base AS downloader
 
-RUN pacman -Syuu --noconfirm wget unzip
+RUN pacman -Syuu --noconfirm wget unzip jre17-openjdk-headless
 
+ENV JAVA_HOME="/usr/lib/jvm/default"
 ENV ANDROID_COMPILE_SDK="33"
 ENV ANDROID_BUILD_TOOLS="33.0.0"
 ENV ANDROID_SDK_TOOLS="8512546_latest"
@@ -19,11 +20,6 @@ RUN mv bin lib source.properties NOTICE.txt tools
 ENV ANDROID_SDK_ROOT=/opt/android
 ENV PATH="$PATH:/opt/android/cmdline-tools/tools/bin:/opt/android/platform-tools"
 WORKDIR /root
-
-# TODO: move to the start
-RUN pacman -Syuu --noconfirm jre17-openjdk-headless
-ENV JAVA_HOME="/usr/lib/jvm/default"
-RUN ls /usr/lib/jvm/default
 
 RUN yes | sdkmanager "platforms;android-$ANDROID_COMPILE_SDK" >/dev/null
 RUN yes | sdkmanager "platform-tools" >/dev/null
