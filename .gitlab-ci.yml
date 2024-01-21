@@ -60,6 +60,11 @@ android:
   variables:
     name: android
 
+nodejs:
+  extends: [ .container ]
+  variables:
+    name: nodejs
+
 # endregion
 
 mirror-playground:
