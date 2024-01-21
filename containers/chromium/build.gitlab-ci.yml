@@ -9,7 +9,7 @@ playground:
   stage: test
 
   before_script:
-    - apt install git
+    - pacman -Syuu --noconfirm git
     - git clone https://gitlab.com/opensavvy/playgrounds/gradle.git
 
   script:

@@ -1,7 +1,6 @@
-FROM node:lts
+FROM archlinux:base
 
-RUN apt-get update && \
-	apt-get install -y --no-install-recommends default-jdk chromium
+RUN pacman -Syuu --noconfirm jre17-openjdk-headless chromium
 
 ENV CHROME_BIN=chromium
-ENV CHROMIUM_FLAGS="--no-sandbox"
+COPY chromium-flags.conf /root/.config/chromium-flags.conf
