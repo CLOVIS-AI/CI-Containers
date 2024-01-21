@@ -3,3 +3,15 @@ include:
 
 variables:
   name: chromium
+
+playground:
+  image: $image_under_test
+  stage: test
+
+  before_script:
+    - apt install git
+    - git clone https://gitlab.com/opensavvy/playgrounds/gradle.git
+
+  script:
+    - cd gradle
+    - ./gradlew jsBrowserTest -PappGroup=just.a.test
