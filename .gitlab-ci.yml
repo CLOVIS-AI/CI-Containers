@@ -65,6 +65,11 @@ nodejs:
   variables:
     name: nodejs
 
+git:
+  extends: [ .container ]
+  variables:
+    name: git
+
 # endregion
 
 mirror-playground:
