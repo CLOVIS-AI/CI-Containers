@@ -1,0 +1,12 @@
+include:
+  - local: common/base.gitlab-ci.yml
+
+variables:
+  name: git
+
+test:
+  image: $image_under_test
+  stage: test
+
+  script:
+    - git log
