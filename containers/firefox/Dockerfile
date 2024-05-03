@@ -1,3 +1,3 @@
 FROM archlinux:base
 
-RUN pacman -Syuu --noconfirm jre17-openjdk-headless firefox
+RUN pacman -Syuu --noconfirm jdk17-openjdk firefox
