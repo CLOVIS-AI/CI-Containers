@@ -1,3 +1,3 @@
 FROM archlinux:base
 
-RUN pacman -Syuu --noconfirm jdk17-openjdk libxcrypt-compat
+RUN pacman -Syuu --noconfirm jdk21-openjdk libxcrypt-compat
