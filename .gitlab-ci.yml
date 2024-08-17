@@ -55,6 +55,11 @@ java:
   variables:
     name: java
 
+mkdocs:
+  extends: [ .container ]
+  variables:
+    name: mkdocs
+
 android:
   extends: [ .container ]
   variables:
