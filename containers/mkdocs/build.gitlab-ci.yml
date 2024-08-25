@@ -1,0 +1,19 @@
+include:
+  - local: common/base.gitlab-ci.yml
+
+variables:
+  name: mkdocs
+
+dokka-material-mkdocs:
+  image: $image_under_test
+  stage: test
+
+  before_script:
+    - pacman -Syuu --noconfirm git
+    - git clone https://gitlab.com/opensavvy/automation/dokka-material-mkdocs.git
+
+  script:
+    - cd dokka-material-mkdocs
+    - ./gradlew :docs:website:embedDokkaIntoMkDocs
+    - cd docs/website
+    - mkdocs build --site-dir ../../docs-website

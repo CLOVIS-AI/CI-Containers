@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+set -xe;
+
+destination="/home/aur-builder/$1"
+
+mkdir -p /home/aur-builder/pkgs
+
+git clone "https://aur.archlinux.org/$1.git" "$destination"
+cd "$destination"
+makepkg --syncdeps --install --noconfirm
+ls .
+mv ./*.pkg.tar.zst /home/aur-builder/pkgs

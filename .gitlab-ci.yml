@@ -28,6 +28,7 @@ workflow:
   trigger:
     include:
       - local: containers/$name/build.gitlab-ci.yml
+    strategy: depend
 
   rules:
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
@@ -54,6 +55,11 @@ java:
   extends: [ .container ]
   variables:
     name: java
+
+mkdocs:
+  extends: [ .container ]
+  variables:
+    name: mkdocs
 
 android:
   extends: [ .container ]

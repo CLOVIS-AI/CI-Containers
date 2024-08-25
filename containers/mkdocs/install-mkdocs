@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+set -xe;
+
+pacman -Syuu --noconfirm jdk22-openjdk libxcrypt-compat \
+    mkdocs \
+    python-csscompressor pngquant python-cairosvg python-colorama  \
+    python-hatch-nodejs-version python-hatch-requirements-txt \
+    python-regex python-xcffib
+
+pacman -U --noconfirm /opt/pkgs/*
+
+pacman -Sc --noconfirm
