@@ -18,6 +18,7 @@ RUN aur mkdocs-minify-plugin
 RUN aur pymdown-extensions
 RUN aur python-paginate
 RUN aur mkdocs-redirects
+RUN aur mkdocs-rss-plugin
 RUN aur mkdocs-material-extensions
 RUN aur mkdocs-material
 
