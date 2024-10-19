@@ -3,9 +3,6 @@ stages:
   - test    # check its contents
   - deploy  # publish it
 
-include:
-  - remote: https://gitlab.com/opensavvy/ci-templates/-/raw/main/docker.gitlab-ci.yml
-
 workflow:
   rules:
     - if: $CI_PIPELINE_SOURCE == 'parent_pipeline'
@@ -16,24 +13,38 @@ variables:
   image_under_test: $CI_REGISTRY_IMAGE/$name:build-$CI_PIPELINE_IID
 
 build:
-  extends: [ .os.docker.build ]
   needs: [ ]
   stage: build
 
-  variables:
-    dockerfile: $path/Dockerfile
-    context: $path
-    image: $name
+  image:
+    name: gcr.io/kaniko-project/executor:v1.23.2-debug
+    entrypoint: [""]
+
+  script:
+    - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${CI_REGISTRY_USER}" "${CI_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"},\"$(echo -n $CI_DEPENDENCY_PROXY_SERVER | awk -F[:] '{print $1}')\":{\"auth\":\"$(printf "%s:%s" ${CI_DEPENDENCY_PROXY_USER} "${CI_DEPENDENCY_PROXY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor
+      --context "$path"
+      --dockerfile "$path/Dockerfile"
+      --cache
+      --registry-mirror "$CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX"
+      --destination "$image_under_test"
 
   interruptible: true
 
 publish:
-  extends: [ .os.docker.rename ]
   # don't use needs because we want to wait for all jobs in the test phase
   stage: deploy
+
+  image:
+    name: gcr.io/go-containerregistry/crane:debug
+    entrypoint: [""]
 
   variables:
     image: $name
     new_version: $version  # defined in the parent pipeline
+
+  script:
+    - crane auth login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - crane tag "$image_under_test" "$new_version"
 
   interruptible: false
