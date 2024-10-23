@@ -1,3 +1,3 @@
 FROM archlinux:base
 
-RUN pacman -Syuu --noconfirm jdk22-openjdk firefox
+RUN pacman -Syuu --noconfirm jdk21-openjdk firefox

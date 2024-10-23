@@ -14,6 +14,6 @@ dokka-material-mkdocs:
 
   script:
     - cd dokka-material-mkdocs
-    - ./gradlew :docs:website:embedDokkaIntoMkDocs
+    - ./gradlew -p docs website:embedDokkaIntoMkDocs
     - cd docs/website
     - mkdocs build --site-dir ../../docs-website

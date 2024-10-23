@@ -18,7 +18,7 @@
 
 set -xe;
 
-pacman -Syuu --noconfirm jdk22-openjdk libxcrypt-compat \
+pacman -Syuu --noconfirm jdk21-openjdk libxcrypt-compat \
     mkdocs \
     python-csscompressor pngquant python-cairosvg python-colorama  \
     python-hatch-nodejs-version python-hatch-requirements-txt \

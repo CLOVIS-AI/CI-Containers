@@ -1,6 +1,6 @@
 FROM archlinux:base AS downloader
 
-RUN pacman -Syuu --noconfirm wget unzip jre22-openjdk-headless
+RUN pacman -Syuu --noconfirm wget unzip jre21-openjdk-headless
 
 ENV JAVA_HOME="/usr/lib/jvm/default" \
     ANDROID_COMPILE_SDK="33" \
@@ -28,7 +28,7 @@ RUN yes | sdkmanager --licenses >/dev/null
 
 FROM archlinux:base
 
-RUN pacman -Syuu --noconfirm jdk22-openjdk
+RUN pacman -Syuu --noconfirm jdk21-openjdk
 
 ENV ANDROID_SDK_ROOT=/opt/android
 ENV PATH="$PATH:/opt/android/cmdline-tools/tools/bin:/opt/android/platform-tools"
