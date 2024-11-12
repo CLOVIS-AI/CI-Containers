@@ -16,6 +16,9 @@ build:
   needs: [ ]
   stage: build
 
+  variables:
+    GODEBUG: "http2client=0"  # https://github.com/GoogleContainerTools/kaniko/issues/2751
+
   image:
     name: gcr.io/kaniko-project/executor:v1.23.2-debug
     entrypoint: [""]
