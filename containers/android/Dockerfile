@@ -3,9 +3,9 @@ FROM archlinux:base AS downloader
 RUN pacman -Syuu --noconfirm wget unzip jre21-openjdk-headless
 
 ENV JAVA_HOME="/usr/lib/jvm/default" \
-    ANDROID_COMPILE_SDK="33" \
-    ANDROID_BUILD_TOOLS="33.0.0" \
-    ANDROID_SDK_TOOLS="8512546_latest"
+    ANDROID_COMPILE_SDK="35" \
+    ANDROID_BUILD_TOOLS="35.0.0" \
+    ANDROID_SDK_TOOLS="12700392_latest"
 
 RUN wget --quiet --output-document=android-sdk.zip https://dl.google.com/android/repository/commandlinetools-linux-$ANDROID_SDK_TOOLS.zip
 RUN unzip -d /opt/android android-sdk.zip
