@@ -56,6 +56,11 @@ java:
   variables:
     name: java
 
+kotlin:
+  extends: [ .container ]
+  variables:
+    name: kotlin
+
 mkdocs:
   extends: [ .container ]
   variables:
