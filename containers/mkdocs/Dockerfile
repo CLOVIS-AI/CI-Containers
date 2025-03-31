@@ -3,7 +3,8 @@ FROM archlinux:base-devel AS mkdocs-builder
 RUN pacman -Syuu --noconfirm git mkdocs  \
     python-csscompressor pngquant python-cairosvg python-colorama  \
     python-hatch-nodejs-version python-hatch-requirements-txt \
-    python-regex python-xcffib python-sphinx python-setuptools python-pytest
+    python-regex python-xcffib python-sphinx python-setuptools python-pytest \
+    python-jsbeautifier python-beautifulsoup4 python-pymdown-extensions
 COPY --chmod=777 aur /bin/aur
 
 # Can't build from the AUR as root
@@ -15,11 +16,11 @@ WORKDIR /home/aur-builder
 RUN aur python-htmlmin2
 RUN aur python-jsmin
 RUN aur mkdocs-minify-plugin
-RUN aur pymdown-extensions
 RUN aur python-paginate
 RUN aur mkdocs-redirects
 RUN aur mkdocs-rss-plugin
 RUN aur mkdocs-material-extensions
+RUN aur mkdocs-mermaid2-plugin
 RUN aur mkdocs-material
 
 FROM archlinux:base
