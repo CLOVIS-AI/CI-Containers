@@ -81,6 +81,11 @@ git:
   variables:
     name: git
 
+caddy-tailscale:
+  extends: [ .container ]
+  variables:
+    name: caddy-tailscale
+
 # endregion
 
 mirror-playground:
