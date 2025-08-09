@@ -44,6 +44,7 @@ workflow:
           - containers/$name/**/*
           - common/**/*
     - when: manual
+      allow_failure: true # Needed to avoid blocking the pipelines
 
 # region Containers
 
