@@ -1,6 +1,6 @@
 FROM archlinux:base-devel AS mkdocs-builder
 
-RUN pacman -Syuu --noconfirm git mkdocs  \
+RUN pacman -Syuu --noconfirm git mkdocs mkdocs-material \
     python-csscompressor pngquant python-cairosvg python-colorama  \
     python-hatch-nodejs-version python-hatch-requirements-txt \
     python-regex python-xcffib python-sphinx python-setuptools python-pytest \
@@ -21,7 +21,6 @@ RUN aur mkdocs-redirects
 RUN aur mkdocs-rss-plugin
 RUN aur mkdocs-material-extensions
 RUN aur mkdocs-mermaid2-plugin
-RUN aur mkdocs-material
 
 FROM archlinux:base
 

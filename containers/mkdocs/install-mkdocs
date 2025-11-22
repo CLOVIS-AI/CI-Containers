@@ -19,7 +19,7 @@
 set -xe;
 
 pacman -Syuu --noconfirm jdk21-openjdk libxcrypt-compat \
-    mkdocs \
+    mkdocs mkdocs-material \
     python-csscompressor pngquant python-cairosvg python-colorama  \
     python-hatch-nodejs-version python-hatch-requirements-txt \
     python-regex python-xcffib
