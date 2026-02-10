@@ -28,7 +28,7 @@ RUN yes | sdkmanager --licenses >/dev/null
 
 FROM archlinux:base
 
-RUN pacman -Syuu --noconfirm jdk21-openjdk
+RUN pacman -Syuu --noconfirm jdk21-openjdk git
 
 ENV ANDROID_SDK_ROOT=/opt/android
 ENV PATH="$PATH:/opt/android/cmdline-tools/tools/bin:/opt/android/platform-tools"
