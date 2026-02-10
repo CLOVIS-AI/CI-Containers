@@ -1,3 +1,3 @@
 FROM archlinux:base
 
-RUN pacman -Syuu --noconfirm jdk21-openjdk jdk17-openjdk nodejs yarn
+RUN pacman -Syuu --noconfirm jdk21-openjdk jdk17-openjdk nodejs yarn git
