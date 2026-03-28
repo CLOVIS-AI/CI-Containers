@@ -1,0 +1,24 @@
+include:
+  - local: common/base.gitlab-ci.yml
+
+variables:
+  name: caupain
+
+ktmongo:
+  image:
+    name: $image_under_test
+    entrypoint: [""]
+  stage: test
+
+  before_script:
+    - pacman -Syuu --noconfirm git
+    - git clone https://gitlab.com/opensavvy/ktmongo.git
+
+  script:
+    - cd ktmongo
+    - caupain --output-type=html -i gradle/libs.versions.toml -i gradle/common.versions.toml
+
+  artifacts:
+    paths:
+      - ktmongo/build/reports/dependencies-update.html
+    expose_as: 'Dependency report for KtMongo'

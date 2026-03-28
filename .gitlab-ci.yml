@@ -92,6 +92,11 @@ caddy-tailscale:
   variables:
     name: caddy-tailscale
 
+caupain:
+  extends: [ .container ]
+  variables:
+    name: caupain
+
 # endregion
 
 mirror-playground:
